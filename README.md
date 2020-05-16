@@ -9,7 +9,7 @@ Unfortunately cursor movements, desktop share, chat windows is not included. Bes
 This is a proof of concept software, programmed in Oldskool fashion, straight 200 lines of code, by an c64/Amiga/pocketpc (6502, 68x00, arm) assembler coder.
 This is also my first program coded with go language
 If you want to see the downloaded pictures, and created videos before deleted, comment two lines near the end of the code
-  os.RemoveAll(presentationId+"/")  // delete temporary dir
-  err = os.Remove("video_list.txt") // delete video-list file
+    os.RemoveAll(presentationId+"/")  // delete temporary dir
+    err = os.Remove("video_list.txt") // delete video-list file
   
  I didn't tried the code on Linux or Mac-OS systems, but I expect no problem
