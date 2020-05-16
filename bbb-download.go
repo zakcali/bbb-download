@@ -117,7 +117,7 @@ func main () {
 		fmt.Println("ending of presentation=", outValue) 
 		truncated = (outValue*10-inValue*10)/10
 		durations[i-1] = math.Round (truncated*100)/100
-		fmt.Println("Duration of lastslide according to meta.xml is: ", durations[i-1]) 
+		fmt.Println("Duration of last slide according to meta.xml is: ", durations[i-1]) 
 	
 		// create mp4 files from png files
 fmt.Println ("Creating videos from slide pictures, duration is given as seconds")
