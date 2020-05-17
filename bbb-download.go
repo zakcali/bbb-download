@@ -127,7 +127,7 @@ fmt.Println ("Creating videos from slide pictures, duration is given as seconds"
 	cmd := exec.Command("ffmpeg","-loop", "1", "-r", "5", "-f", "image2", 
 						"-i", presentationId +"/"+imgnames[j],
 						"-c:v", "libx264", "-r", "24", "-t", fmt.Sprint(durations[j]), "-pix_fmt", "yuv420p", 
-						"-vf", "scale=860:-2,pad=height=720",        // as close as 800x600
+						"-vf", "scale=860:644",        // as close as 800x600
 						presentationId+"/"+vidnames[j]  )
 	cmd.Run()
 	}
@@ -164,7 +164,7 @@ fmt.Println ("downloading webcams")
 	fmt.Println ("converting webcams.webm to webcams.mp4")
 	cmd = exec.Command("ffmpeg","-i", presentationId+"/"+"webcams.webm",
 						 "-q:a", "0", "-q:v", "0", 
-						 "-vf", "scale=420:-2,pad=height=720", 
+						 "-vf", "scale=420:-2,pad=height=644", 
 						presentationId+"/"+"webcams.mp4")
 	cmd.Run()
 
