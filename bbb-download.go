@@ -22,11 +22,6 @@ func main () {
     presentationUrl := scanner.Text()
 	result := strings.SplitAfter(presentationUrl,"?meetingId=")
 	presentationId := result [1]
-	fmt.Println ("creating directory: ", presentationId)
-	
-	if _, err := os.Stat(presentationId); os.IsNotExist(err) {
-    os.Mkdir(presentationId, 0700) // create temporary dir
-}
 
 	result2 := strings.Split(result [0], "/playback/" )
 	baseUrl := result2 [0] + "/presentation/" + presentationId
@@ -67,8 +62,12 @@ func main () {
     if err != nil {
         log.Fatal(err)
     }
-	shapes:=string (shapesBody)
+    shapes:=string (shapesBody)
 
+   	fmt.Println ("creating directory: ", presentationId)
+	if _, err := os.Stat(presentationId); os.IsNotExist(err) {
+    os.Mkdir(presentationId, 0700) // create temporary dir
+}
      // Find and print slide timings, image Urls
 	durations := make(map[int]float64)
 	vidnames := make(map[int]string)
@@ -170,9 +169,9 @@ fmt.Println ("downloading webcams")
 
 fmt.Println ("merging slides and webcams side by side")
 	cmd = exec.Command("ffmpeg", "-i", presentationId+"/"+"slides.mp4",
-					"-i", presentationId+"/"+"webcams.mp4",
-					"-filter_complex", "[0:v][1:v]hstack=inputs=2[v]", 
-					"-map", "[v]", "-map", "1:a", meetingName[0]+".mp4")
+				"-i", presentationId+"/"+"webcams.mp4",
+				"-filter_complex", "[0:v][1:v]hstack=inputs=2[v]", 
+				"-map", "[v]", "-map", "1:a", meetingName[0]+".mp4")
 	cmd.Run()
 fmt.Println ("Name of the final video is: ", meetingName[0])
 os.RemoveAll(presentationId+"/")  // delete temporary dir
