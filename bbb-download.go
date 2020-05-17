@@ -170,9 +170,9 @@ fmt.Println ("downloading webcams")
 
 fmt.Println ("merging slides and webcams side by side")
 	cmd = exec.Command("ffmpeg", "-i", presentationId+"/"+"slides.mp4",
-								"-i", presentationId+"/"+"webcams.mp4",
-							"-filter_complex", "hstack", 
-							meetingName[0]+".mp4")
+					"-i", presentationId+"/"+"webcams.mp4",
+					"-filter_complex", "[0:v][1:v]hstack=inputs=2[v]", 
+					"-map", "[v]", "-map", "1:a", meetingName[0]+".mp4")
 	cmd.Run()
 fmt.Println ("Name of the final video is: ", meetingName[0])
 os.RemoveAll(presentationId+"/")  // delete temporary dir
