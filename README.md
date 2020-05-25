@@ -15,4 +15,4 @@ If you want to see the downloaded pictures, and created videos before deleted, c
   
  I didn't tried the code on Linux or Mac-OS systems, but I expect no problem
  
-Do-not use it. It consumes so much processor sources, and can't show cursor movements, desktop share, chat windows is not included. Use https://github.com/jibon57/bbb-recorder on Linux instead. For windows 10, https://github.com/Ventricule/html2screen based bbb-recorder must be produced, instead of based on puppeteer.
+Do-not use it. It consumes so much processor sources, and can't show cursor movements, desktop share, chat windows. Use https://github.com/jibon57/bbb-recorder on Linux instead. For windows 10, https://github.com/Ventricule/html2screen based bbb-recorder must be produced, instead of based on puppeteer.
