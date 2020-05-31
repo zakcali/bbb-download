@@ -1,7 +1,7 @@
 # bbb-download
 Downloader for bigbluebutton presentations
 
-I need a simple executable file works on Windows, MAc-Os or Linux systems. Program only needs ffmepg executable on your path, capable of encoding with parameter libx264
+I need a single executable file works on Windows, Mac-Os or Linux systems. This software also needs ffmepg executable on your path, capable of encoding with parameter libx264
 
 Program asks for url of presentation, then downloads slides, creates slides.mp4, downloads webcams.webm, creates webcams.mp4, then merges slides.mp4 and webcams.mp4 side by side.
 Unfortunately cursor movements, desktop share, chat windows is not included. Best way to include them is, clone and build the code from https://github.com/jibon57/bbb-recorder on a Linux system.
