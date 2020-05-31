@@ -13,4 +13,4 @@ What I share is a proof of concept software, programmed in Oldskool fashion, str
   
  I didn't try the code on Linux or Mac-OS systems, but I expect no problem
  
-Do-not use it. It consumes so much processor sources, and can't show cursor movements, desktop share, chat windows. Use https://github.com/jibon57/bbb-recorder on Linux instead. For windows 10, https://github.com/Ventricule/html2screen based bbb-recorder must be produced, instead of based on puppeteer.
+Do-not use it. It consumes so much processor sources, and can't show cursor movements, desktop share, chat windows. Use https://github.com/jibon57/bbb-recorder on Linux instead. bbb-recorder uses codes from puppetcam depends on xvfb which doesn't exist for Windows operating system. For windows 10 compatible puppetcam look at: https://github.com/Ventricule/html2screen 
