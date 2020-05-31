@@ -11,6 +11,6 @@ What I share is a proof of concept software, programmed in Oldskool fashion, str
     os.RemoveAll(presentationId+"/")  // delete temporary dir
     err = os.Remove("video_list.txt") // delete video-list file
   
- I didn't tried the code on Linux or Mac-OS systems, but I expect no problem
+ I didn't try the code on Linux or Mac-OS systems, but I expect no problem
  
 Do-not use it. It consumes so much processor sources, and can't show cursor movements, desktop share, chat windows. Use https://github.com/jibon57/bbb-recorder on Linux instead. For windows 10, https://github.com/Ventricule/html2screen based bbb-recorder must be produced, instead of based on puppeteer.
