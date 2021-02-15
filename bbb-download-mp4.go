@@ -126,7 +126,7 @@ func main () {
 		// create mp4 files from png files
 fmt.Println ("Creating videos from slide pictures, duration is given as seconds")
 	for j:=1; j<i; j++ 	{
-	fmt.Println (imgnames[j], " ", vidnames[j], " ", durations [j], "\r") // print to same line just like a counter
+	fmt.Print (imgnames[j], " ", vidnames[j], " ", durations [j], "\r") // print to same line just like a counter
 
 	cmd := exec.Command("ffmpeg","-loop", "1", "-r", "5", "-f", "image2", 
 						"-i", presentationId +"/"+imgnames[j],
