@@ -179,8 +179,8 @@ fmt.Println ("merging slides and webcams side by side")
 				"-map", "[v]", "-map", "1:a", meetingName[0]+".mp4")
 	cmd.Run()
 fmt.Println ("Name of the final video is: ", meetingName[0])
-// os.RemoveAll(presentationId+"/")  // delete temporary dir
-// err = os.Remove("video_list.txt") // delete video-list file
+ os.RemoveAll(presentationId+"/")  // delete temporary dir
+ err = os.Remove("video_list.txt") // delete video-list file
 }
 
 // DownloadFile will download a url to a local file. 
