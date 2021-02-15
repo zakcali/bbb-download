@@ -17,6 +17,6 @@ Do-not use it. It consumes so much processor sources, and can't show cursor move
 
 skips svg files created during a poll, because ffmpeg cannot convert svg files to mp4 format.
 
-there are two builds, one for webcams.webm file and other is for webcams.mp4 file resides in the server. I'm not sure if there is really a BBB server that has only webcams.mp4 file, this is for a request only. I have no time to check if there is really a file resides in the server. golang Download function retrieves a html file named webcams.webm containing 404 code even webcams.webm file is not on the server.
+there are two builds, one for webcams.webm file and other is for webcams.mp4 file resides in the server. I have no time to check if there is really a file resides in the server. golang Download function retrieves a html file named webcams.webm containing 404 code even webcams.webm file is not on the server.
 
 webroot secure anywhere antivirus cause crashing executable files build with go language. I need to build with an older version of go, v 1.13.15 for intel386 
