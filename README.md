@@ -14,3 +14,7 @@ What I share is a proof of concept software, programmed in Oldskool fashion, str
  I didn't try the code on Linux or Mac-OS systems, but I expect no problem
  
 Do-not use it. It consumes so much processor sources, and can't show cursor movements, desktop share, chat windows. Use https://github.com/jibon57/bbb-recorder on Linux instead. bbb-recorder uses codes from puppetcam depends on xvfb which doesn't exist for Windows operating system. For windows 10 compatible puppetcam look at: https://github.com/Ventricule/html2screen 
+
+update: skips svg files created during a poll, because ffmpeg cannot convert svg files to mp4 format
+there are two builds, one for webcams.webm file and other is for webcams.mp4 file resides in the server.
+I have no time to check if there is really a file resides in the server. golang Download function retrieves a html file named webcams.webm containing 404 code even webcams.webm file is not on the server.
