@@ -15,8 +15,8 @@ What I share is a proof of concept software, programmed in Oldskool fashion, str
  
 Do-not use it. It consumes so much processor sources, and can't show cursor movements, desktop share, chat windows. Use https://github.com/jibon57/bbb-recorder on Linux instead. bbb-recorder uses codes from puppetcam depends on xvfb which doesn't exist for Windows operating system. For windows 10 compatible puppetcam look at: https://github.com/Ventricule/html2screen 
 
-update: skips svg files created during a poll, because ffmpeg cannot convert svg files to mp4 format.
+skips svg files created during a poll, because ffmpeg cannot convert svg files to mp4 format.
 
-there are two builds, one for webcams.webm file and other is for webcams.mp4 file resides in the server.
+there are two builds, one for webcams.webm file and other is for webcams.mp4 file resides in the server. I'm not sure if tehre is really a BB server that has only webcams.mp4 file, this is for a request only. I have no time to check if there is really a file resides in the server. golang Download function retrieves a html file named webcams.webm containing 404 code even webcams.webm file is not on the server.
 
-I have no time to check if there is really a file resides in the server. golang Download function retrieves a html file named webcams.webm containing 404 code even webcams.webm file is not on the server.
+webroot secure anywhere antivirus cause crashing executable files builded with go language. I need to build with an older version of go, v 1.13.15 for intel386 
