@@ -160,20 +160,26 @@ fmt.Println ("merging slide videos to create: slides.mp4")
 	cmd.Run()
 fmt.Println ("slide videos merged")
 // download webcams.mp4
-fmt.Println ("downloading webcams")
+fmt.Println ("downloading webcams", webcamsUrl)
 	if err := DownloadFile(presentationId+"/"+"webcams.mp4", webcamsUrl); err != nil {
 		panic(err) 	}
 	fmt.Println ("webcams.mp4 file is downloaded")
-
+//convert webcams.mp4 to 644p webcams644.mp4
+fmt.Println ("converting 480p webcams.mp4 to 644p webcams644.mp4")
+	cmd = exec.Command("ffmpeg","-i", presentationId+"/"+"webcams.mp4",
+						 "-q:a", "0", "-q:v", "0", 
+						 "-vf", "scale=420:-2,pad=height=644", 
+						presentationId+"/"+"webcams644.mp4")
+	cmd.Run()
 fmt.Println ("merging slides and webcams side by side")
 	cmd = exec.Command("ffmpeg", "-i", presentationId+"/"+"slides.mp4",
-				"-i", presentationId+"/"+"webcams.mp4",
+				"-i", presentationId+"/"+"webcams644.mp4",
 				"-filter_complex", "[0:v][1:v]hstack=inputs=2[v]", 
 				"-map", "[v]", "-map", "1:a", meetingName[0]+".mp4")
 	cmd.Run()
 fmt.Println ("Name of the final video is: ", meetingName[0])
-// os.RemoveAll(presentationId+"/")  // delete temporary dir
-// err = os.Remove("video_list.txt") // delete video-list file
+os.RemoveAll(presentationId+"/")  // delete temporary dir
+err = os.Remove("video_list.txt") // delete video-list file
 }
 
 // DownloadFile will download a url to a local file. 
