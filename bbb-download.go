@@ -73,7 +73,7 @@ func main () {
 	vidnames := make(map[int]string)
 	imgnames := make(map[int]string)
 	inValue, outValue, truncated:= 0.0, 0.0, 0.0
-	inSrc, outSrc, pngSrc := "0.0", "10.5", "presentation/"  
+	inSrc, outSrc, pngSrc, lastPNG := "0.0", "10.5", "presentation/", "s1.png"  
 	i:=1 // number of png pictures for slide
 
 	//parse for in= out= href= from /shapes.svg
@@ -93,6 +93,11 @@ func main () {
 	imgtext := strings.SplitAfter (pngs[k], "\"")
 	realpng:=strings.Split(imgtext[0],"\"")
 	pngSrc = (realpng[0])
+	// if a poll made, then image file is not a PNG
+	isSVG := strings.Contains(pngSrc, ".svg")
+	// use last known PNG
+	if isSVG == false {lastPNG = pngSrc
+		} else {pngSrc = lastPNG }
 
 	inValue, _ = strconv.ParseFloat (inSrc,64)
 	outValue, _ = strconv.ParseFloat (outSrc,64)
@@ -102,7 +107,7 @@ func main () {
 	vidnames[i] = "v" + strconv.Itoa(i) + ".mp4"
 
 	imgUrl := baseUrl + "/" + pngSrc
-//	fmt.Println (inSrc, " ", outSrc, " ", durations[i], " ", pngSrc, imgnames [i], " ", vidnames[i])
+//	fmt.Println (inSrc, " ", outSrc, " ", durations[i], " ", pngSrc, isSVG, imgnames [i], " ", vidnames[i])
 
 		if err := DownloadFile(presentationId+"/"+imgnames[i], imgUrl); err != nil {
 				panic(err)
@@ -121,7 +126,7 @@ func main () {
 		// create mp4 files from png files
 fmt.Println ("Creating videos from slide pictures, duration is given as seconds")
 	for j:=1; j<i; j++ 	{
-	fmt.Println (imgnames[j], " ", vidnames[j], " ", durations [j])
+	fmt.Println (imgnames[j], " ", vidnames[j], " ", durations [j], "\r") // print to same line just like a counter
 
 	cmd := exec.Command("ffmpeg","-loop", "1", "-r", "5", "-f", "image2", 
 						"-i", presentationId +"/"+imgnames[j],
@@ -174,8 +179,8 @@ fmt.Println ("merging slides and webcams side by side")
 				"-map", "[v]", "-map", "1:a", meetingName[0]+".mp4")
 	cmd.Run()
 fmt.Println ("Name of the final video is: ", meetingName[0])
-os.RemoveAll(presentationId+"/")  // delete temporary dir
-err = os.Remove("video_list.txt") // delete video-list file
+// os.RemoveAll(presentationId+"/")  // delete temporary dir
+// err = os.Remove("video_list.txt") // delete video-list file
 }
 
 // DownloadFile will download a url to a local file. 
