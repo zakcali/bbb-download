@@ -17,7 +17,5 @@ Do-not use it. It consumes so much processor sources, and can't show cursor move
 
 skips svg files created during a poll, because ffmpeg cannot convert svg files to mp4 format.
 
-there are two builds, one for webcams.webm file and other is for webcams.mp4 file resides in the server. I have no time to check if there is really a file resides in the server. golang Download function retrieves a html file named webcams.webm containing 404 code even webcams.webm file is not on the server.
-
 # important
 webroot secure anywhere antivirus cause crashing executable files build with go language. I build executables with an older version of go, v 1.13.15 for intel386. I use webroot at home, and I don't want to uninstall it. for more information look at: https://github.com/golang/go/issues/40878 and https://community.webroot.com/webroot-secureanywhere-antivirus-12/apps-built-in-go-language-are-crashing-on-windows-345321
