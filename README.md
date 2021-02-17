@@ -18,4 +18,4 @@ Do-not use it. It consumes so much processor sources, and can't show cursor move
 skips svg files created during a poll, because ffmpeg cannot convert svg files to mp4 format.
 
 # important
-webroot secure anywhere antivirus cause crashing executable files build with go language. I build executables with an older version of go, v 1.11.4. I use webroot at home, and I don't want to uninstall it. for more information look at: https://github.com/golang/go/issues/40878 and https://community.webroot.com/webroot-secureanywhere-antivirus-12/apps-built-in-go-language-are-crashing-on-windows-345321
+webroot secure anywhere antivirus crashes executable files build with go language. I build executables with an older version of go, v 1.11.4. I use webroot at home, and I don't want to uninstall it. for more information look at: https://github.com/golang/go/issues/40878 and https://community.webroot.com/webroot-secureanywhere-antivirus-12/apps-built-in-go-language-are-crashing-on-windows-345321
