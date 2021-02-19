@@ -137,15 +137,15 @@ func main () {
 	}
 nSlides=i-1  // if only one slide is converted, than nSlides = 1
 fmt.Println("Number of slides =",nSlides)
-	// end of download all off the slides loop
+// end of download all off the slides loop
 		//correct duration of last slide
-		outValue, _ = strconv.ParseFloat(duration[0],64)
-		outValue= outValue/1000
-		videoLength=math.Round ( outValue*100)/100
-		fmt.Println("Length of presentation =",  videoLength) 
-		truncated = ( videoLength*10-inValue*10)/10
-		durations[i-1] = math.Round (truncated*100)/100
-		fmt.Println("Duration of last slide according to meta.xml =", durations[i-1]) 
+outValue, _ = strconv.ParseFloat(duration[0],64)
+outValue= outValue/1000
+videoLength=math.Round ( outValue*100)/100
+fmt.Println("Length of presentation =",  videoLength) 
+truncated = ( videoLength*10-inValue*10)/10
+durations[i-1] = math.Round (truncated*100)/100
+fmt.Println("Duration of last slide according to meta.xml =", durations[i-1]) 
 	
 		// create mp4 files from png files
 fmt.Println ("Creating videos from slide pictures, duration is given as seconds")
@@ -154,7 +154,7 @@ fmt.Println ("Creating videos from slide pictures, duration is given as seconds"
 	cmd := exec.Command("ffmpeg","-loop", "1", "-r", "5", "-f", "image2", 
 						"-i", presentationId +"/"+imgnames[j],
 						"-c:v", "libx264", "-r", "24", "-t", fmt.Sprint(durations[j]), "-pix_fmt", "yuv420p", 
-						"-vf", "scale=860:644",        // as close as 800x600
+						"-vf", "scale='if(gt(a,1024/768),1024,-2)':'if(gt(a,1024/768),-2,768)',pad=1024:768:(ow-iw)/2:(oh-ih)/2:color=white",        // as close as 800x600
 						presentationId+"/"+vidnames[j]  )
 	cmd.Run()
 
@@ -190,16 +190,16 @@ fmt.Println ("slide videos merged")
 
 } 
 
-//convert webcams video file to 644p webcams644.mp4
-fmt.Println ("converting 480p ",webcamsFile, " to 644p webcams644.mp4")
+//convert webcams video file to  webcamsRight.mp4
+fmt.Println ("converting ",webcamsFile, " to  webcamsRight.mp4")
 	cmd := exec.Command("ffmpeg","-i", presentationId+"/"+webcamsFile,
 						 "-q:a", "0", "-q:v", "0", 
-						 "-vf", "scale=420:-2,pad=height=644:color=white", 
-						presentationId+"/"+"webcams644.mp4")
+						 "-vf", "scale=512:-2,pad=height=768:color=white", 
+						presentationId+"/"+"webcamsRight.mp4")
 	cmd.Run()
 fmt.Println ("merging slides and webcams side by side")
 	cmd = exec.Command("ffmpeg", "-i", presentationId+"/"+slidesFile,
-				"-i", presentationId+"/"+"webcams644.mp4",
+				"-i", presentationId+"/"+"webcamsRight.mp4",
 				"-filter_complex", "[0:v][1:v]hstack=inputs=2[v]", 
 				"-t", fmt.Sprint(videoLength),
 				"-map", "[v]", "-map", "1:a", meetingName[0]+".mp4")
