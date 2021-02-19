@@ -194,7 +194,7 @@ fmt.Println ("slide videos merged")
 fmt.Println ("converting 480p ",webcamsFile, " to 644p webcams644.mp4")
 	cmd := exec.Command("ffmpeg","-i", presentationId+"/"+webcamsFile,
 						 "-q:a", "0", "-q:v", "0", 
-						 "-vf", "scale=420:-2,pad=height=644", 
+						 "-vf", "scale=420:-2,pad=height=644:color=white", 
 						presentationId+"/"+"webcams644.mp4")
 	cmd.Run()
 fmt.Println ("merging slides and webcams side by side")
